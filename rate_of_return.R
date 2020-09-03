@@ -137,12 +137,14 @@ skew_all <- foreach::foreach(ind = 1:1000,.combine = dplyr::bind_rows) %do% {
 }
 
 
-foreach::foreach(ind = 1:1000) %do% {
+foreach::foreach(ind = 1:1000, .combine = c) %do% {
   
   fs::file_delete(here::here("testdata", glue::glue("file_{ind}.tsv")))
 
-                  
+    invisible()   
   
 }
+fs::dir_ls(here::here("testdata"))
+
 
 dir_create(here::here("testdata"))
